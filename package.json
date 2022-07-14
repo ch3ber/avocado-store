@@ -1,0 +1,56 @@
+{
+  "name": "avocado-store",
+  "version": "1.0.0",
+  "description": "Page with Next.js where you can buy a variety of avocados",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "eslint . --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ch3ber/avocado-store.git"
+  },
+  "keywords": [
+    "next.js",
+    "javascript",
+    "ssr",
+    "avocado",
+    "ecommerce"
+  ],
+  "author": "Eber Edrey Alejo Berrones <eber4202@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ch3ber/avocado-store/issues"
+  },
+  "homepage": "https://github.com/ch3ber/avocado-store#readme",
+  "dependencies": {
+    "next": "12.2.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.4",
+    "@types/react": "^18.0.15",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.19.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.1",
+    "husky": "^8.0.1",
+    "typescript": "^4.7.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint:fix && pretty-quick --staged && type-check"
+    }
+  }
+}
