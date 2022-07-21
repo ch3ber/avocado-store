@@ -13,12 +13,7 @@ const HomePage = () => {
       })
   }, [])
 
-  return (
-    <>
-      <Navbar />
-      {productList.map((product) => product.image)}
-    </>
-  )
+  return <>{productList.map((product) => product.image)}</>
 }
 
 export default HomePage

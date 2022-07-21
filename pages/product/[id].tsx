@@ -25,14 +25,6 @@ const ProductPage = () => {
       <Navbar />
       <section>
         <h1>{product?.name}</h1>
-        <figure>
-          <Image
-            src={product?.image}
-            alt={product?.name}
-            width={100}
-            height={100}
-          />
-        </figure>
       </section>
     </>
   )
