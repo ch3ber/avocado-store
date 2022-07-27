@@ -1,22 +1,21 @@
-import type { AppProps } from 'next/app'
-import { Layout } from '@components/Layout/Layout'
+import { AppProps } from 'next/app'
+import CartProvider from '@store/Cart'
+import Layout from '@components/Layout/Layout'
+import { ChakraProvider } from '@chakra-ui/react'
 
-export default function MyApp ({ Component, pageProps }: AppProps): JSX.Element {
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  // Aditional props
+  // Aditional layout
+  // Manejar errores - componentDidCatch
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ChakraProvider>
+      <CartProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </CartProvider>
+    </ChakraProvider>
   )
 }
 
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
+export default MyApp

@@ -2,12 +2,20 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@database": ["database/db.ts"],
-      "@cors": ["cors-middleware.ts"],
-      "@components/*": ["components/*"],
-      "@store/*": ["store/*"]
+      "@database": [
+        "database/db.ts"
+      ],
+      "@cors": [
+        "cors-middleware.ts"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@store/*": [
+        "store/*"
+      ]
     },
-    "target": "es5",
+    "target": "es6",
     "lib": [
       "dom",
       "dom.iterable",
@@ -18,20 +26,20 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }

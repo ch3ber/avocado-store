@@ -1,18 +1,35 @@
 import React from 'react'
-import Link from 'next/link'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { Flex, Link, Spacer, Container, Box, chakra } from '@chakra-ui/react'
+import { Avocado } from '@components/SVGIcons'
+import ShoppingCartIcon from './ShoppingCartIcon'
 
-export const Navbar = () => {
+const Navbar = () => {
+  const { pathname } = useRouter()
+
   return (
-    <nav>
-      <menu>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
+    <Box boxShadow="base" w="full" mb={4}>
+      <Flex justifyContent="space-between">
+        <NextLink href="/" passHref>
+          <Link bg={pathname === '/' ? 'gray.200' : 'white'}>
+            <Flex alignItems="center" py={4} px={8}>
+              <Avocado />
+              Avo Store
+            </Flex>
+          </Link>
+        </NextLink>
 
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </menu>
-    </nav>
+        <NextLink href="/cart" passHref>
+          <Link bg={pathname === 'cart' ? 'gray.50' : 'white'}>
+            <Box py={4} px={8}>
+              <ShoppingCartIcon cartCount={0} name="Canasta" />
+            </Box>
+          </Link>
+        </NextLink>
+      </Flex>
+    </Box>
   )
 }
+
+export default Navbar
