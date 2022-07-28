@@ -15,7 +15,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     // Statically generate all paths
     paths,
     // Display 404 for everything else
-    fallback: false,
+    fallback: false
   }
 }
 

@@ -1,23 +1,23 @@
 import React, { Dispatch, useContext, useReducer } from 'react'
 
-export type CartItemType = TProduct & { quantity: number }
+export type CartItemType = TProduct & { quantity: number };
 
 export type CartState = {
-  [key: string]: CartItemType
-}
+  [key: string]: CartItemType;
+};
 
 export type CartAction = {
-  type: 'add' | 'remove'
-  item: TProduct
-  quantity?: number
-}
+  type: 'add' | 'remove';
+  item: TProduct;
+  quantity?: number;
+};
 
 const defaultState = {} as CartState
 
 const CartItemsContext = React.createContext(defaultState)
-const CartDispatchContext = React.createContext((() => {}) as Dispatch<
-  CartAction
->)
+const CartDispatchContext = React.createContext(
+  (() => {}) as Dispatch<CartAction>
+)
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(cartReducers, defaultState)
@@ -31,7 +31,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-function cartReducers(
+function cartReducers (
   state: CartState,
   { item, type, quantity: qtyToAdd = 1 }: CartAction
 ) {
@@ -39,14 +39,14 @@ function cartReducers(
 
   switch (type) {
     case 'add': {
-      if (existingCartItem != undefined) {
+      if (existingCartItem !== undefined) {
         const quantity = existingCartItem.quantity + qtyToAdd
         return {
           ...state,
           [item.id]: {
             ...existingCartItem,
-            quantity,
-          },
+            quantity
+          }
         }
       }
 
@@ -54,13 +54,13 @@ function cartReducers(
         ...state,
         [item.id]: {
           ...item,
-          quantity: qtyToAdd,
-        },
+          quantity: qtyToAdd
+        }
       }
     }
 
     case 'remove': {
-      if (existingCartItem == undefined) {
+      if (existingCartItem === undefined) {
         return state
       }
 
@@ -70,8 +70,8 @@ function cartReducers(
           ...state,
           [item.id]: {
             ...existingCartItem,
-            quantity,
-          },
+            quantity
+          }
         }
       }
 
@@ -109,7 +109,7 @@ export const useCart = () => {
     items,
     itemsById,
     count,
-    subTotal,
+    subTotal
   }
 }
 export const useCartMutations = () => {
@@ -119,18 +119,18 @@ export const useCartMutations = () => {
     dispatch({
       type: 'add',
       item: product,
-      quantity,
+      quantity
     })
 
   const removeFromCart = (product: TProduct) =>
     dispatch({
       type: 'remove',
-      item: product,
+      item: product
     })
 
   return {
     addToCart,
-    removeFromCart,
+    removeFromCart
   }
 }
 

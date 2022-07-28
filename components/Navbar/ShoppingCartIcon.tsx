@@ -9,7 +9,7 @@ type ShoppingCartIconProps = {
 const ShoppingCartIcon = ({ cartCount, name }: ShoppingCartIconProps) => {
   const showCartCount = () => {
     if (!cartCount) {
-      return `(0)`
+      return '(0)'
     }
     if (cartCount > 9) {
       return (

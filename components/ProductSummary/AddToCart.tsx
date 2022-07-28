@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Input, Icon, Transition } from 'semantic-ui-react'
+// import { Input, Icon, Transition } from 'semantic-ui-react'
 import { useCartMutations } from '@store/Cart'
 
 type AddToCartProps = {
@@ -57,36 +57,37 @@ const AddToCart = ({ product }: AddToCartProps) => {
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setQuantity(parseInt(target.value, 10))
 
-  return (
-    <>
-      <Input
-        type="number"
-        placeholder="Quantity"
-        value={quantity}
-        min={1}
-        step={1}
-        error={!!error}
-        onChange={handleChange}
-        action={{
-          color: 'green',
-          content: 'Add to Cart',
-          icon: 'plus cart',
-          onClick: handleSubmit,
-          loading,
-          disabled: loading
-        }}
-      />
-      {error && (
-        <div style={{ color: 'red', position: 'absolute' }}>{error}</div>
-      )}
-      <Transition duration={{ hide: 500, show: 500 }} visible={visible}>
-        <div style={{ color: 'green', position: 'absolute' }}>
-          <Icon name="check" />
-          Added to cart
-        </div>
-      </Transition>
-    </>
-  )
+  return <h1>No disponible</h1>
+  // return (
+  // <>
+  // <Input
+  // type="number"
+  // placeholder="Quantity"
+  // value={quantity}
+  // min={1}
+  // step={1}
+  // error={!!error}
+  // onChange={handleChange}
+  // action={{
+  // color: 'green',
+  // content: 'Add to Cart',
+  // icon: 'plus cart',
+  // onClick: handleSubmit,
+  // loading,
+  // disabled: loading
+  // }}
+  /// >
+  // {error && (
+  // <div style={{ color: 'red', position: 'absolute' }}>{error}</div>
+  // )}
+  // <Transition duration={{ hide: 500, show: 500 }} visible={visible}>
+  // <div style={{ color: 'green', position: 'absolute' }}>
+  // <Icon name="check" />
+  // Added to cart
+  // </div>
+  // </Transition>
+  // </>
+  // )
 }
 
 export default AddToCart

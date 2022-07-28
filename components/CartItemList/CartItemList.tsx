@@ -68,6 +68,8 @@ const CartItemList = ({
   // })
 
   // return <Item.Group divided items={mapCartItemsToItems(items)} as="section" />
+
+  return <h1>No disponible</h1>
 }
 
 export default CartItemList

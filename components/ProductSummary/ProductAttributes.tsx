@@ -1,41 +1,40 @@
 import React from 'react'
-import { Header, Divider, Table } from 'semantic-ui-react'
+// import { Header, Divider, Table } from 'semantic-ui-react'
 
 const ProductAttributes = ({
   description,
   ...otherAttributes
-}: TProductAttributes) => (
-  <section className="container">
-    <Header as="h3">About this avocado</Header>
-    <p>{description}</p>
+}: TProductAttributes) => <h1>No disponible</h1>
 
-    <Divider />
+// <section className="container">
+// <Header as="h3">About this avocado</Header>
+// <p>{description}</p>
 
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell colSpan="2">Attributes</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
+// <Divider />
 
-      <Table.Body>
-        {Object.keys(otherAttributes).map((key) => (
-          <Table.Row key={key}>
-            <Table.Cell className="attr-name">{key}</Table.Cell>
-            <Table.Cell>
-              {otherAttributes[key as keyof typeof otherAttributes]}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+// <Table celled>
+// <Table.Header>
+// <Table.Row>
+// <Table.HeaderCell colSpan="2">Attributes</Table.HeaderCell>
+// </Table.Row>
+// </Table.Header>
 
-    <style jsx>{`
-      .container :global(.attr-name) {
-        text-transform: capitalize;
-      }
-    `}</style>
-  </section>
-)
+// <Table.Body>
+// {Object.keys(otherAttributes).map((key) => (
+// <Table.Row key={key}>
+// <Table.Cell className="attr-name">{key}</Table.Cell>
+// <Table.Cell>
+// {otherAttributes[key as keyof typeof otherAttributes]}
+// </Table.Cell>
+// </Table.Row>
+// ))}
+// </Table.Body>
+// </Table>
 
+// <style jsx>{`
+// .container :global(.attr-name) {
+// text-transform: capitalize;
+// }
+// `}</style>
+// </section>
 export default ProductAttributes

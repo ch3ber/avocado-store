@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 
-import { Header, Button } from 'semantic-ui-react'
+// import { Header, Button } from 'semantic-ui-react'
 import Layout from '@components/Layout/Layout'
 
 type YesOrNoApiResponse = {
-  data: 'yes' | 'no'
-}
+  data: 'yes' | 'no';
+};
 
 const fetchResult = async () => {
   const res = await fetch('https://platzi-avo.vercel.app/api/yes-or-no')
@@ -16,13 +16,13 @@ const fetchResult = async () => {
   return data
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps () {
   const initialResult = await fetchResult()
 
   return {
     props: {
-      initialResult,
-    },
+      initialResult
+    }
   }
 }
 
@@ -43,41 +43,42 @@ const YesOrNo = ({ initialResult }: { initialResult: string }) => {
     setTriggerCount(triggerCount + 1)
   }
 
-  return (
-    <Layout>
-      <div>
-        <Header as="h1" color={isLoading ? 'grey' : 'green'}>
-          {result}
-        </Header>
+  return <h1>No disponible</h1>
+  // return (
+  // <Layout>
+  // <div>
+  // <Header as="h1" color={isLoading ? 'grey' : 'green'}>
+  // {result}
+  // </Header>
 
-        <p>
-          <Button
-            color="green"
-            onClick={onClick}
-            loading={isLoading}
-            disabled={isLoading}
-          >
-            Intentar de nuevo
-          </Button>
-        </p>
-        <p>
-          <Link href="/">
-            <a className="ui black button basic">Volver al inicio</a>
-          </Link>
-        </p>
-      </div>
+  // <p>
+  // <Button
+  // color="green"
+  // onClick={onClick}
+  // loading={isLoading}
+  // disabled={isLoading}
+  // >
+  // Intentar de nuevo
+  // </Button>
+  // </p>
+  // <p>
+  // <Link href="/">
+  // <a className="ui black button basic">Volver al inicio</a>
+  // </Link>
+  // </p>
+  // </div>
 
-      <style jsx>{`
-        div {
-          text-align: center;
-        }
-        div :global(h1.header) {
-          font-size: 7rem;
-          text-transform: uppercase;
-        }
-      `}</style>
-    </Layout>
-  )
+  // <style jsx>{`
+  // div {
+  // text-align: center;
+  // }
+  // div :global(h1.header) {
+  // font-size: 7rem;
+  // text-transform: uppercase;
+  // }
+  // `}</style>
+  // </Layout>
+  // )
 }
 
 export default YesOrNo
