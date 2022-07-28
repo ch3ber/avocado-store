@@ -19,14 +19,14 @@ type Props = {
 };
 
 const ModalHeaderContent: React.FC<Props> = ({ handleClose }) => {
-  const [isLargerThan1280] = useMediaQuery('(min-width: 680px)')
+  const [isLargerThan680] = useMediaQuery('(min-width: 680px)')
 
   return (
     <ModalContent p={6} maxW="90%" w="auto">
       <ModalCloseButton />
       <Flex
         alignItems="center"
-        flexDirection={isLargerThan1280 ? 'row' : 'column'}
+        flexDirection={isLargerThan680 ? 'row' : 'column'}
       >
         <Box>
           <PosMeMuero size="150px" />

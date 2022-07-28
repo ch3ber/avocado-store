@@ -6,8 +6,8 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   colors: {
     main: {
-      200: 'green.200',
-      700: 'green.700'
+      200: '#89d47f',
+      700: '#153830'
     }
   }
 })

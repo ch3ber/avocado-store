@@ -6,7 +6,7 @@ type Props = {
 };
 
 const AnimatedHeader: React.FC<Props> = ({ children }) => (
-  <Heading size="lg" as="h1">
+  <Heading size="xl" as="h1">
     <Flex alignItems="center">
       Platzi
       {children}
