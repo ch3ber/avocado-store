@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '@components/Navbar/Navbar'
-// import Footer from '@components/Footer/Footer'
+import Footer from '@components/Footer/Footer'
 import { Container } from '@chakra-ui/react'
 
 type Props = {
@@ -11,10 +11,8 @@ export const Layout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <Navbar />
-      <Container maxW="container.md">
-        {children}
-        {/* <Footer /> */}
-      </Container>
+      <Container maxW="container.md">{children}</Container>
+      <Footer />
     </>
   )
 }
