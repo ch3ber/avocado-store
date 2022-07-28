@@ -1,14 +1,23 @@
 import { AppProps } from 'next/app'
 import CartProvider from '@store/Cart'
 import Layout from '@components/Layout/Layout'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+
+const theme = extendTheme({
+  colors: {
+    main: {
+      200: 'green.200',
+      700: 'green.700'
+    }
+  }
+})
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   // Aditional props
   // Aditional layout
   // Manejar errores - componentDidCatch
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <CartProvider>
         <Layout>
           <Component {...pageProps} />

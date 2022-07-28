@@ -6,30 +6,51 @@ import {
   ModalBody,
   ModalCloseButton,
   Text,
-  Button
+  Button,
+  Flex,
+  Box,
+  useMediaQuery
 } from '@chakra-ui/react'
 
 import { PosMeMuero } from '@components/SVGIcons'
 
-const ModalHeaderContent = ({ handleClose }) => {
-  return (
-    <ModalContent>
-      <ModalHeader>Mataste el aguacate</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <PosMeMuero size="154px" />
-        <Text>Lo tocaste tanto que lo mataste.</Text>
-        <Text>
-          Por otro lado, eres una persona muy curiosa y has descubierto esto. :)
-        </Text>
-      </ModalBody>
+type Props = {
+  handleClose: () => void;
+};
 
-      <ModalFooter>
-        <Button colorScheme="blue" mr={3} onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="ghost">Secondary Action</Button>
-      </ModalFooter>
+const ModalHeaderContent: React.FC<Props> = ({ handleClose }) => {
+  const [isLargerThan1280] = useMediaQuery('(min-width: 680px)')
+
+  return (
+    <ModalContent p={6} maxW="90%" w="auto">
+      <ModalCloseButton />
+      <Flex
+        alignItems="center"
+        flexDirection={isLargerThan1280 ? 'row' : 'column'}
+      >
+        <Box>
+          <PosMeMuero size="150px" />
+        </Box>
+        <Box>
+          <ModalHeader>Mataste el aguacate</ModalHeader>
+          <ModalBody>
+            <Text>Lo tocaste tanto que lo mataste.</Text>
+            <Text>
+              Por otro lado, eres una persona muy curiosa y has descubierto
+              esto. :)
+            </Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="yellow" mr={3} onClick={handleClose}>
+              Ay, lo siento
+            </Button>
+            <Button colorScheme="green" mr={3} onClick={handleClose}>
+              Cerrar
+            </Button>
+          </ModalFooter>
+        </Box>
+      </Flex>
     </ModalContent>
   )
 }

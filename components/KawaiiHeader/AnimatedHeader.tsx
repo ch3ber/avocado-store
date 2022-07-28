@@ -1,17 +1,18 @@
 import React from 'react'
-import { Box, Heading } from '@chakra-ui/react'
-import { motion } from 'framer-motion'
+import { Heading, Flex } from '@chakra-ui/react'
 
-import { Avocado } from '@components/SVGIcons'
+type Props = {
+  children: React.ReactNode;
+};
 
-const AnimatedHeader = () => (
-  <Box as={motion.div} whileTap={{ scale: 0.8 }}>
-    <Heading size="lg" as="h1">
+const AnimatedHeader: React.FC<Props> = ({ children }) => (
+  <Heading size="lg" as="h1">
+    <Flex alignItems="center">
       Platzi
-      <Avocado size="58px" />
+      {children}
       Avo
-    </Heading>
-  </Box>
+    </Flex>
+  </Heading>
 )
 
 export default AnimatedHeader
