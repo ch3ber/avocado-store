@@ -18,38 +18,42 @@ type ProductListProps = {
   products: TProduct[];
 };
 
+const sliceDescription = (description: string) => {
+  return description.slice(0, 80) + '...'
+}
+
 const mapProductsToCards = (products: TProduct[]) =>
-  products.map(({ name, id, price, image }) => (
+  products.map(({ name, id, price, image, attributes }) => (
     <GridItem
       key={id}
-      p={[4, 8]}
+      p={4}
       border="1px"
-      borderColor="gray.100"
-      boxShadow="lg"
+      borderColor="gray.200"
+      boxShadow="md"
       borderRadius={3}
+      as="article"
     >
-      <Box>
-        <Image src={image} alt={name} width={333} height={333} />
+      <Image src={image} alt={name} width={333} height={333} />
 
-        <Divider bg="gray.400" height="1px" mb={3} />
+      <Divider bg="gray.400" height="1px" mb={3} />
 
-        <VStack align="stretch" spacing={3}>
-          <Box minH={24}>
-            <Heading as="h2" size="lg">
-              {name}
-            </Heading>
-            <Text color="gray.600">${price} UDS</Text>
-          </Box>
+      <VStack align="stretch" spacing={3}>
+        <Box>
+          <Heading as="h2" size="md">
+            {name}
+          </Heading>
+          <Text my={2}>{sliceDescription(attributes.description)}</Text>
+          <Text color="main.500">${price} UDS</Text>
+        </Box>
 
-          <Flex justifyContent="flex-end">
-            <NextLink href={`/product/${id}`} passHref>
-              <Link py={3} px={5} bg="gray.200" borderRadius={3}>
-                Ver Producto
-              </Link>
-            </NextLink>
-          </Flex>
-        </VStack>
-      </Box>
+        <Flex justifyContent="flex-end">
+          <NextLink href={`/product/${id}`} passHref>
+            <Link py={3} px={5} bg="gray.200" borderRadius={3}>
+              Ver Producto
+            </Link>
+          </NextLink>
+        </Flex>
+      </VStack>
     </GridItem>
   ))
 

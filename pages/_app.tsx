@@ -6,8 +6,14 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 const theme = extendTheme({
   colors: {
     main: {
+      50: '#f3faf2',
+      100: '#cfeecb',
       200: '#89d47f',
-      700: '#153830'
+      300: '#66c759',
+      400: '#49b13c',
+      500: '#3a8b2f',
+      600: '#2a6522',
+      700: '#1a3f15'
     }
   }
 })
