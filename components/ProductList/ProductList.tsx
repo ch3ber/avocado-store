@@ -26,7 +26,7 @@ const mapProductsToCards = (products: TProduct[]) =>
   products.map(({ name, id, price, image, attributes }) => (
     <GridItem
       key={id}
-      p={4}
+      p={5}
       border="1px"
       borderColor="gray.200"
       boxShadow="md"
