@@ -1,4 +1,6 @@
+import { Box, Heading, HStack, Text } from '@chakra-ui/react'
 import React from 'react'
+import Image from 'next/image'
 // import { Item, Label } from 'semantic-ui-react'
 
 import AddToCart from './AddToCart'
@@ -9,7 +11,19 @@ type ProductSummaryProps = {
 };
 
 const ProductSummary = ({ product }: ProductSummaryProps) => (
-  <h1>No disponible</h1>
+  <>
+    <HStack mt={10}>
+      <Box>
+        <Image src={product.image} alt={product.name} width={333} height={333} />
+      </Box>
+      <Box>
+        <Heading as='h1' size={'md'}>{product.name}</Heading>
+        <Text>${product.price} USD</Text>
+        <Text fontSize='xs' fontWeight='bold' p={2} w={36} bgColor='gray.100' color={'gray.600'} borderRadius={'md'}>SKU: {product.sku}</Text>
+        <AddToCart product={product} />
+      </Box>
+    </HStack>
+  </>
 )
 
 // <>

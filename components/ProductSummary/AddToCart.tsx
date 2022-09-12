@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 // import { Input, Icon, Transition } from 'semantic-ui-react'
 import { useCartMutations } from '@store/Cart'
+import { Button, HStack, Input } from '@chakra-ui/react'
 
 type AddToCartProps = {
   product: TProduct;
@@ -57,7 +58,14 @@ const AddToCart = ({ product }: AddToCartProps) => {
   const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
     setQuantity(parseInt(target.value, 10))
 
-  return <h1>No disponible</h1>
+  return (
+    <>
+    <HStack>
+      <Input type={'number'} onChange={handleChange} placeholder='Quantity' />
+      <Button colorScheme={'green'} onClick={handleSubmit}>Add to Cart</Button>
+    </HStack>
+    </>
+  )
   // return (
   // <>
   // <Input

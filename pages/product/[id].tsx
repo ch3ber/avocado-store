@@ -1,12 +1,11 @@
 import React from 'react'
 import fetch from 'isomorphic-unfetch'
 
-import Layout from '@components/Layout/Layout'
 import ProductSummary from '@components/ProductSummary/ProductSummary'
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch('https://platzi-avo.vercel.app/api/avo')
+  const response = await fetch('https://ch3ber-avocado-store.vercel.app/api/avo')
   const { data }: TAPIAvoResponse = await response.json()
 
   const paths = data.map(({ id }) => ({ params: { id } }))
@@ -19,12 +18,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-// This also gets called at build time
+// This also gets called at build timec
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
   const response = await fetch(
-    `https://platzi-avo.vercel.app/api/avo/${params?.id}`
+    `https://ch3ber-avocado-store.vercel.app/api/avo/${params?.id}`
   )
   const product = await response.json()
 
@@ -34,9 +33,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const ProductPage = ({ product }: { product: TProduct }) => {
   return (
-    <Layout>
+    <>
       {product == null ? null : <ProductSummary product={product} />}
-    </Layout>
+    </>
   )
 }
 
