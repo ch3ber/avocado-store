@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import {
@@ -33,7 +33,7 @@ const Footer = () => {
       as="footer"
     >
       <Center>
-        <Container as={Fragment} maxW="container.md">
+        <Container maxW="container.md">
           <Stack direction="column">
             <Stack
               as="section"
