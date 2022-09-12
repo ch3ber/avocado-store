@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
+import { Button, Flex, Heading } from '@chakra-ui/react'
 
 // import { Header, Button } from 'semantic-ui-react'
-import Layout from '@components/Layout/Layout'
 
 type YesOrNoApiResponse = {
   data: 'yes' | 'no';
 };
 
 const fetchResult = async () => {
-  const res = await fetch('https://platzi-avo.vercel.app/api/yes-or-no')
+  const res = await fetch('https://ch3ber-avocado-store.vercel.app/api/yes-or-no')
   const { data }: YesOrNoApiResponse = await res.json()
 
   return data
@@ -43,42 +43,46 @@ const YesOrNo = ({ initialResult }: { initialResult: string }) => {
     setTriggerCount(triggerCount + 1)
   }
 
-  return <h1>No disponible</h1>
-  // return (
-  // <Layout>
-  // <div>
-  // <Header as="h1" color={isLoading ? 'grey' : 'green'}>
-  // {result}
-  // </Header>
+  const colorControler = () => {
+    if (isLoading) {
+      return 'gray.400'
+    }
 
-  // <p>
-  // <Button
-  // color="green"
-  // onClick={onClick}
-  // loading={isLoading}
-  // disabled={isLoading}
-  // >
-  // Intentar de nuevo
-  // </Button>
-  // </p>
-  // <p>
-  // <Link href="/">
-  // <a className="ui black button basic">Volver al inicio</a>
-  // </Link>
-  // </p>
-  // </div>
+    if (result === 'yes') {
+      return 'main.400'
+    }
 
-  // <style jsx>{`
-  // div {
-  // text-align: center;
-  // }
-  // div :global(h1.header) {
-  // font-size: 7rem;
-  // text-transform: uppercase;
-  // }
-  // `}</style>
-  // </Layout>
-  // )
+    return 'red.400'
+  }
+
+  return (
+    <>
+      <Flex flexDirection="column" alignItems="center" mt={10} gap={10}>
+        <Heading as="h1" size={'4xl'} color={colorControler()}>
+          {result.toUpperCase()}
+        </Heading>
+        <div>
+          <p>
+            <Button
+              onClick={onClick}
+              w={44}
+              bgColor={colorControler()}
+              disabled={isLoading}
+            >
+              Intentar de nuevo
+            </Button>
+          </p>
+          <p>
+            <Link href="/">
+              <Button as='a' colorScheme='gray' w={44} mt={5} variant='outline'>
+                Volver al inicio
+              </Button>
+            </Link>
+          </p>
+        </div>
+      </Flex>
+    </>
+  )
 }
 
 export default YesOrNo

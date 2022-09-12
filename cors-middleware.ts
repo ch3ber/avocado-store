@@ -1,3 +1,13 @@
+import { debug } from 'console'
+import corsWrapper from 'cors'
+import { NextApiRequest, NextApiResponse } from 'next'
+
+type MiddlewareFunc = (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  next: (err?: Error) => void
+) => void
+
 /**
  * Hey there you curious :)
  *
@@ -8,33 +18,24 @@
  * @see https://github.com/vercel/next.js/tree/canary/examples/api-routes-cors
  * @see https://github.com/expressjs/cors#configuration-options
  */
-import Cors from 'cors'
 
-// Initializing the cors middleware
-const cors = Cors({
-  methods: ['GET', 'HEAD']
-})
+const CORS_OPTIONS = {
+  methods: ['GET', 'OPTIONS']
+}
 
-// Helper method to wait for a middleware to execute before continuing
-// And to throw an error when an error happens in a middleware
-function runMiddleware (req: any, res: any, fn: any) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result: Error | unknown) => {
-      if (result instanceof Error) {
-        return reject(result)
-      }
-
-      return resolve(result)
+function promisifyMiddleware (middleware: MiddlewareFunc) {
+  return (req: any, res: any) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result: Error | unknown) => {
+        if (result instanceof Error) {
+          return reject(result)
+        }
+        return resolve(result)
+      })
     })
-  })
 }
 
-async function handler (req: any, res: any) {
-  // Run the middleware
-  await runMiddleware(req, res, cors)
+// Initialize the cors middleware
+const cors = promisifyMiddleware(corsWrapper(CORS_OPTIONS))
 
-  // Rest of the API logic
-  res.json({ message: 'Hello Everyone!' })
-}
-
-export default handler
+export default cors
