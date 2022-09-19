@@ -1,40 +1,43 @@
+import { Heading, Divider, Table, Thead, Tr, Th, Td, Tbody, TableContainer } from '@chakra-ui/react'
 import React from 'react'
-// import { Header, Divider, Table } from 'semantic-ui-react'
 
 const ProductAttributes = ({
   description,
   ...otherAttributes
-}: TProductAttributes) => <h1>No disponible</h1>
+}: TProductAttributes) => (
+  <section className="container">
+    <Heading as="h3" size='md'>About this avocado</Heading>
+    <p>{description}</p>
 
-// <section className="container">
-// <Header as="h3">About this avocado</Header>
-// <p>{description}</p>
+    <Divider my={5} />
 
-// <Divider />
+    <TableContainer>
+      <Table>
+        <Thead bg='gray.100'>
+          <Tr>
+            <Th>Attributes</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
 
-// <Table celled>
-// <Table.Header>
-// <Table.Row>
-// <Table.HeaderCell colSpan="2">Attributes</Table.HeaderCell>
-// </Table.Row>
-// </Table.Header>
+        <Tbody>
+          {Object.keys(otherAttributes).map((key) => (
+            <Tr key={key}>
+              <Td className="attr-name">{key}</Td>
+              <Td>
+                {otherAttributes[key as keyof typeof otherAttributes]}
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    </TableContainer>
+    <style jsx>{`
+      .container :global(.attr-name) {
+        text-transform: capitalize;
+      }
+    `}</style>
+  </section>
+)
 
-// <Table.Body>
-// {Object.keys(otherAttributes).map((key) => (
-// <Table.Row key={key}>
-// <Table.Cell className="attr-name">{key}</Table.Cell>
-// <Table.Cell>
-// {otherAttributes[key as keyof typeof otherAttributes]}
-// </Table.Cell>
-// </Table.Row>
-// ))}
-// </Table.Body>
-// </Table>
-
-// <style jsx>{`
-// .container :global(.attr-name) {
-// text-transform: capitalize;
-// }
-// `}</style>
-// </section>
 export default ProductAttributes

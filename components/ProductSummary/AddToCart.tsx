@@ -1,6 +1,7 @@
-import React, { useState, useContext } from 'react'
-// import { Input, Icon, Transition } from 'semantic-ui-react'
+import React, { useState } from 'react'
 import { useCartMutations } from '@store/Cart'
+import { Button, HStack, Text, ScaleFade, Box, Input } from '@chakra-ui/react'
+import { CheckIcon, WarningTwoIcon } from '@chakra-ui/icons'
 
 type AddToCartProps = {
   product: TProduct;
@@ -9,7 +10,7 @@ type AddToCartProps = {
 // Fake a server Response, we don't care on this project
 // about data persistency, but you may add it :)
 const addToCartRequest = () =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     window.setTimeout(resolve, 600)
   })
 
@@ -54,40 +55,24 @@ const AddToCart = ({ product }: AddToCartProps) => {
     }
   }
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(parseInt(target.value, 10))
+  }
 
-  return <h1>No disponible</h1>
-  // return (
-  // <>
-  // <Input
-  // type="number"
-  // placeholder="Quantity"
-  // value={quantity}
-  // min={1}
-  // step={1}
-  // error={!!error}
-  // onChange={handleChange}
-  // action={{
-  // color: 'green',
-  // content: 'Add to Cart',
-  // icon: 'plus cart',
-  // onClick: handleSubmit,
-  // loading,
-  // disabled: loading
-  // }}
-  /// >
-  // {error && (
-  // <div style={{ color: 'red', position: 'absolute' }}>{error}</div>
-  // )}
-  // <Transition duration={{ hide: 500, show: 500 }} visible={visible}>
-  // <div style={{ color: 'green', position: 'absolute' }}>
-  // <Icon name="check" />
-  // Added to cart
-  // </div>
-  // </Transition>
-  // </>
-  // )
+  return (
+    <>
+    <HStack mt={3}>
+      <Input type='number' min={1} onChange={handleChange} value={quantity} />
+      <Button colorScheme={'main'} onClick={handleSubmit} py={4} px={8} isLoading={loading} disabled={loading}>Add to Cart</Button>
+    </HStack>
+    <Box>
+      {error && (<Text color='red.500'><WarningTwoIcon /> {error}</Text>)}
+      <ScaleFade initialScale={0.5} in={visible}>
+        <Text color='green.300'> <CheckIcon /> Added to cart</Text>
+      </ScaleFade>
+    </Box>
+    </>
+  )
 }
 
 export default AddToCart
