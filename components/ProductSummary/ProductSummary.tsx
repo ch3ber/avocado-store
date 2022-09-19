@@ -23,6 +23,7 @@ const ProductSummary = ({ product }: ProductSummaryProps) => (
         <AddToCart product={product} />
       </Box>
     </HStack>
+    <ProductAttributes {...product.attributes} />
   </>
 )
 
