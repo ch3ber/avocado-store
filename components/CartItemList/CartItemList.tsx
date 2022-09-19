@@ -1,5 +1,5 @@
 import React from 'react'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { CartItemType } from '@store/Cart'
 import {
   Alert,
@@ -7,8 +7,14 @@ import {
   AlertTitle,
   AlertDescription,
   Spinner,
-  Button
+  Button,
+  Flex,
+  VStack,
+  Text,
+  Link
 } from '@chakra-ui/react'
+import Image from 'next/image'
+import { SmallCloseIcon } from '@chakra-ui/icons'
 
 type CartItemListProps = {
   items: CartItemType[];
@@ -35,41 +41,26 @@ const CartItemList = ({
     )
   }
 
-  // const mapCartItemsToItems = (items: CartItemType[]) =>
-  // items.map((cartItem) => {
-  // const { id, name, quantity, price, image } = cartItem
+  const mapCartItemsToItems = (items: CartItemType[]) =>
+    items.map((cartItem) => {
+      const { id, name, quantity, price, image, attributes } = cartItem
 
-  // return {
-  // childKey: id,
-  // header: (
-  // <Item.Header>
-  // <Link href={`/product/${id}/`}>
-  // <a>{name}</a>
-  // </Link>
-  // </Item.Header>
-  // ),
-  // image: (
-  // <Item.Image
-  // src={image}
-  // alt={name}
-  // size="small"
-  // style={{ background: '#f2f2f2' }}
-  /// >
-  // ),
-  // meta: `${quantity} x ${price}`,
-  // description: 'Some more information goes here....',
-  // extra: (
-  // <Button
-  // colorScheme="teal"
-  // onClick={() => removeFromCart(cartItem)}
-  // ></Button>
-  // )
-  // }
-  // })
+      return (
+        <Flex key={id} as='article' p={7} borderRadius='md' border="1px" borderColor="gray.200" boxShadow='sm'>
+          <Image src={image} alt={name} width={200} height={200} />
+          <Flex ml={7} flexDirection='column' gap={2} w="70%">
+            <NextLink href={`/product/${id}/`} passHref>
+              <Link color='blue.600' fontSize='xl'>{name}</Link>
+            </NextLink>
+            <Text fontWeight='bold' color="gray.600">{quantity} x ${price} USD</Text>
+            {attributes.description}
+            <Button onClick={() => removeFromCart(cartItem)}><SmallCloseIcon /></Button>
+          </Flex>
+        </Flex>
+      )
+    })
 
-  // return <Item.Group divided items={mapCartItemsToItems(items)} as="section" />
-
-  return <h1>No disponible</h1>
+  return <VStack mt={10} spacing={5}>{mapCartItemsToItems(items)}</VStack>
 }
 
 export default CartItemList
