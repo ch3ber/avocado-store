@@ -11,7 +11,8 @@ import {
   Flex,
   VStack,
   Text,
-  Link
+  Link,
+  useMediaQuery
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import { SmallCloseIcon } from '@chakra-ui/icons'
@@ -41,14 +42,17 @@ const CartItemList = ({
     )
   }
 
-  const mapCartItemsToItems = (items: CartItemType[]) =>
-    items.map((cartItem) => {
+  const mapCartItemsToItems = (items: CartItemType[]) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [isLargerThan680] = useMediaQuery('(min-width: 680px)')
+
+    return items.map((cartItem) => {
       const { id, name, quantity, price, image, attributes } = cartItem
 
       return (
-        <Flex key={id} as='article' p={7} borderRadius='md' border="1px" borderColor="gray.200" boxShadow='sm'>
+        <Flex flexDirection={isLargerThan680 ? 'row' : 'column'} alignItems='center' key={id} as='article' p={7} borderRadius='md' border="1px" borderColor="gray.200" boxShadow='sm'>
           <Image src={image} alt={name} width={200} height={200} />
-          <Flex ml={7} flexDirection='column' gap={2} w="70%">
+          <Flex ml={5} flexDirection='column' gap={2} w="70%">
             <NextLink href={`/product/${id}/`} passHref>
               <Link color='blue.600' fontSize='xl'>{name}</Link>
             </NextLink>
@@ -59,6 +63,7 @@ const CartItemList = ({
         </Flex>
       )
     })
+  }
 
   return <VStack mt={10} spacing={5}>{mapCartItemsToItems(items)}</VStack>
 }
